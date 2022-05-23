@@ -3,10 +3,12 @@ import OpponentGameBoard from "../components/OpponentGameBoard";
 
 export default function GamePage() {
   return (
-    <div className="gameboard-container">
-      <h1 className="gameboard-title">Battleships 🚢💣</h1>
-      <MyGameBoard />
-      <OpponentGameBoard />
-    </div>
+    <>
+      <h1 className="title">Battleships 🚢💣</h1>
+      <div className="gamepage-container">
+        <MyGameBoard />
+        <OpponentGameBoard />
+      </div>
+    </>
   );
 }

@@ -18,12 +18,12 @@ export default function MyGameBoard() {
 
   return (
     <>
-      <div className="my-gameboard">
+      <div className="gameboard my-gameboard">
         {React.Children.toArray(
           battleships.map((ship) => (
             <div className="row">
               {React.Children.toArray(
-                ship.map((item) => <div className="box">{item}</div>)
+                ship.map((item) => <div className="box my-box">{item}</div>)
               )}
             </div>
           ))

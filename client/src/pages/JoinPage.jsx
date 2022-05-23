@@ -30,19 +30,18 @@ export default function JoinPage() {
   useEffect(() => {
     socket.on("start_game", () => {
       setWaiting(false);
-      setConnected(true);
+      setConnected(
+        true,
+        setTimeout(() => {
+          navigate("/battleships");
+        }, 2000)
+      );
     });
-  }, [socket]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      navigate("/battleships");
-    }, 2000);
-  }, [socket, connected, navigate]);
+  }, [socket, navigate]);
 
   if (waiting) {
     return (
-      <div>
+      <div className="joinpage-container">
         <h1>Waiting...</h1>
       </div>
     );
@@ -50,14 +49,14 @@ export default function JoinPage() {
 
   if (connected) {
     return (
-      <div>
+      <div className="joinpage-container">
         <h1>Connected!</h1>
       </div>
     );
   }
 
   return (
-    <div id="container">
+    <div className="joinpage-container">
       <h2>Let's play battleships!</h2>
       <p>Click below to play</p>
       <form onSubmit={handleSubmit}>
