@@ -1,32 +1,23 @@
 import logo from "./logo.svg"
 import "./App.css"
-import { placeAllShips } from "./Ships"
+import useGetShips from "../client/src/hooks/useGetShips"
 
-const ships = [
-	{
-		name: "carrier",
-		length: 4,
-		sunk: false
-	},
-	{
-		name: "battleship",
-		length: 3,
-		sunk: false
-	},
-	{
-		name: "cruiser",
-		length: 2,
-		sunk: false
-	},
-	{
-		name: "destroyer",
-		length: 2,
-		sunk: false
-	},
+const battleboard = [
+	[null, null, null, null, null, null, null, null, null, null],
+	[null, null, null, null, null, null, null, null, null, null],
+	[null, null, null, null, null, null, null, null, null, null],
+	[null, null, null, null, null, null, null, null, null, null],
+	[null, null, null, null, null, null, null, null, null, null],
+	[null, null, null, null, null, null, null, null, null, null],
+	[null, null, null, null, null, null, null, null, null, null],
+	[null, null, null, null, null, null, null, null, null, null],
+	[null, null, null, null, null, null, null, null, null, null],
+	[null, null, null, null, null, null, null, null, null, null],
 ]
 
 function App() {
-	placeAllShips(ships)
+	const filledBoard = useGetShips(battleboard)
+	console.table(filledBoard)
 
 	return (
 		<div className="App">
