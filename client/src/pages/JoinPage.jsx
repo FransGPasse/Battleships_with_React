@@ -34,6 +34,12 @@ export default function JoinPage() {
     });
   }, [socket]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      navigate("/battleships");
+    }, 2000);
+  }, [socket, connected, navigate]);
+
   if (waiting) {
     return (
       <div>
