@@ -21,11 +21,12 @@ export default function JoinPage() {
     socket.emit("user_connected", socket.id);
   };
 
-  //Skickar waiting till servern och
+  //Skickar waiting till servern och sätter waiting till true
   useEffect(() => {
     socket.on("waiting", () => setWaiting(true));
   }, [socket]);
 
+  //Lyssnar efter start game från servern och sätter connected till true
   useEffect(() => {
     socket.on("start_game", () => {
       setWaiting(false);
@@ -36,7 +37,6 @@ export default function JoinPage() {
   if (waiting) {
     return (
       <div>
-        {" "}
         <h1>Waiting...</h1>
       </div>
     );
@@ -45,7 +45,6 @@ export default function JoinPage() {
   if (connected) {
     return (
       <div>
-        {" "}
         <h1>Connected!</h1>
       </div>
     );
