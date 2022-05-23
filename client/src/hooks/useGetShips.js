@@ -1,4 +1,19 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
+
+const gameboard = () => {
+	return [
+		[null, null, null, null, null, null, null, null, null, null],
+		[null, null, null, null, null, null, null, null, null, null],
+		[null, null, null, null, null, null, null, null, null, null],
+		[null, null, null, null, null, null, null, null, null, null],
+		[null, null, null, null, null, null, null, null, null, null],
+		[null, null, null, null, null, null, null, null, null, null],
+		[null, null, null, null, null, null, null, null, null, null],
+		[null, null, null, null, null, null, null, null, null, null],
+		[null, null, null, null, null, null, null, null, null, null],
+		[null, null, null, null, null, null, null, null, null, null],
+	]
+}
 
 const ships = [
 	{
@@ -23,12 +38,8 @@ const ships = [
 	},
 ]
 
-const useGetShips = ({ gameBoard }) => {
-	const [battleboard, setBattleboard] = useState(gameBoard)
-	const [startingX, setStartingX] = useState()
-	const [startingY, setStartingY] = useState()
-	const [shipLength, setShipLength] = useState()
-	const [occupied, setOccupied] = useState(false)
+const useGetShips = () => {
+	const [battleboard, setBattleboard] = useState(gameboard)
 
 	// generate starting position
 	const generateStartingIndex = () => {
@@ -37,44 +48,49 @@ const useGetShips = ({ gameBoard }) => {
 
 	const placeAllShips = () => {
 		ships.forEach((ship) => placeShip(ship))
-		console.table(battleboard)
+		// console.table(battleboard)
 	}
 
 	const placeShip = (ship) => {
-		setStartingX(generateStartingIndex())
-		setStartingY(generateStartingIndex())
-		setShipLength(ship.length)
+		const startingX = generateStartingIndex()
+		const startingY = generateStartingIndex()
+		let occupied = false
 		// const currentShipSpaceY = startingY + ship.length
 
 		// check if no ship in startingposition and inside board
 		if (
 			battleboard[startingY][startingX] === null &&
-			10 > startingX + shipLength
+			10 > startingX + ship.length
 		) {
 			// check if any of the ships parts is interfearing with another ship
-			for (let i = startingX; i <= startingX + shipLength; i++) {
+			for (let i = startingX; i <= startingX + ship.length; i++) {
 				// if you find ship anywhere, change occupied
 				if (battleboard[startingY][i] !== null) {
-					setOccupied(true)
+					occupied = true
 				}
 			}
 
 			// if no ship-part found, place ship there
 			if (!occupied) {
-				return setBattleboard(
-					[startingY].fill(ship, startingX, startingX + shipLength)
+				const newBattleboard = [...battleboard]
+				newBattleboard[startingY].fill(
+					ship,
+					startingX,
+					startingX + ship.length
 				)
+
+				setBattleboard(newBattleboard)
+				return
 			}
 		}
 		// if any of the criterias fail, call function again to get new coordinates
 		placeShip(ship)
 	}
 
-	useEffect(() => {
-		placeAllShips()
-	}, [])
-
-	return battleboard
+	return {
+		battleboard,
+		placeAllShips,
+	}
 }
 
 export default useGetShips
