@@ -15,6 +15,7 @@ function App() {
   }, []);
 
   console.table(myBoard.battleboard);
+  console.table("Hej hej");
 
   return (
     <div className="App">
