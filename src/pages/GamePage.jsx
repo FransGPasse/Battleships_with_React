@@ -15,7 +15,7 @@ export default function GamePage() {
 		<>
 			<h1 className="title">Battleships 🚢💣</h1>
 			<div className="gamepage-container">
-				<MyGameBoard myBoard={myBoard} />
+				<MyGameBoard myBoard={myBoard.battleboard} />
 				<OpponentGameBoard />
 			</div>
 		</>

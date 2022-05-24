@@ -20,14 +20,15 @@ export default function MyGameBoard({ myBoard }) {
 		<>
 			<div className="gameboard my-gameboard">
 				{React.Children.toArray(
-					myBoard.map((ship) => (
-						<div className="row">
-							{React.Children.toArray(
-								ship.map((item) => (
-									<div className="box my-box">{item}</div>
-								))
-							)}
-						</div>
+					myBoard.map((boxitem) => (
+						<div className="box my-box">{boxitem}</div>
+						// <div className="row">
+						// 	{React.Children.toArray(
+						// 		ship.map((item) => (
+						// 			<div className="box my-box">{item}</div>
+						// 		))
+						// 	)}
+						// </div>
 					))
 				)}
 			</div>
