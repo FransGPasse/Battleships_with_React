@@ -1,7 +1,7 @@
-import React from "react";
+import React from "react"
 
-export default function MyGameBoard() {
-  const battleships = [
+export default function MyGameBoard({ myBoard }) {
+	/* const battleships = [
     [[], [], [], [], [], [], [], [], [], []],
     [[], [], [], [], [], [], [], [], [], []],
     [[], [], [], [], [], [], [], [], [], []],
@@ -14,21 +14,23 @@ export default function MyGameBoard() {
     [[], [], [], [], [], [], [], [], [], []],
   ];
 
-  console.log(battleships);
+  console.log(battleships); */
 
-  return (
-    <>
-      <div className="gameboard my-gameboard">
-        {React.Children.toArray(
-          battleships.map((ship) => (
-            <div className="row">
-              {React.Children.toArray(
-                ship.map((item) => <div className="box my-box">{item}</div>)
-              )}
-            </div>
-          ))
-        )}
-      </div>
-    </>
-  );
+	return (
+		<>
+			<div className="gameboard my-gameboard">
+				{React.Children.toArray(
+					myBoard.map((ship) => (
+						<div className="row">
+							{React.Children.toArray(
+								ship.map((item) => (
+									<div className="box my-box">{item}</div>
+								))
+							)}
+						</div>
+					))
+				)}
+			</div>
+		</>
+	)
 }
